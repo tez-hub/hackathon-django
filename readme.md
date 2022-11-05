@@ -1,0 +1,1 @@
+hosted on https://hackathon-django-production.up.railway.app
