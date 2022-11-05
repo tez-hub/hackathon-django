@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.core import serializers
 
 from advocates.models import Advocates, Company
 from .serializers import AdvocatesSerializer, CompanySerializer
@@ -33,5 +34,7 @@ def companies(request):
 @api_view(['GET'])
 def company(request, id):
     com = Company.objects.get(id=id)
+    
     serializer = CompanySerializer(com, many=False)
     return Response(serializer.data)
+
