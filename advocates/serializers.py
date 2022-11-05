@@ -1,0 +1,18 @@
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework import serializers
+from .models import Company, Advocates
+
+class CompanySerializer(ModelSerializer):
+    # employees = SerializerMethodField(read_only=True)
+    # advocates = serializers.StringRelatedField(many=True)
+    class Meta:
+        model = Company
+        fields = '__all__'
+
+
+class AdvocatesSerializer(ModelSerializer):
+    company = CompanySerializer()
+    class Meta:
+        model = Advocates
+        fields = ['profile_pic', 'username', 'name', 'bio', 'company', 'twitter']
+
